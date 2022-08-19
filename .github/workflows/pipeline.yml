@@ -1,0 +1,40 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '14'
+
+      # - name: install dependencies
+      #   run: npm ci
+
+      # - name: build
+      #   run: npm run build
+
+      - name: deploy to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_email: ${{secrets.HEROKU_API_EMAIL}}
+          heroku_app_name: ${{secrets.HEROKU_APP}}
+          justlogin: true
+
+      - name: "Login to heroku registry"
+        run: heroku container:login
+
+      - name: "Build and push to heroku registry"
+        run: heroku container:push web --app ${{secrets.HEROKU_APP}}
+
+      - name: "Releases the container"
+        run: heroku container:release web --app ${{secrets.HEROKU_APP}}
