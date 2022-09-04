@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { routing, appRoutingProviders } from './app.routing';
 
 // PAGES
 import { LoginComponent } from './pages/login/login.component';
@@ -22,9 +23,12 @@ import { RegisterComponent } from './pages/register/register.component';
     
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    routing
   ],
-  providers: [],
+  providers: [
+    appRoutingProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
