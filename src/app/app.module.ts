@@ -9,6 +9,8 @@ import { routing, appRoutingProviders } from './app.routing';
 // PAGES
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { HomeComponent } from './pages/home/home.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { RegisterComponent } from './pages/register/register.component';
 
     // PAGES
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    CategoriesComponent
     
   ],
   imports: [
