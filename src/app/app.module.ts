@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
@@ -28,7 +29,8 @@ import { CategoriesComponent } from './pages/categories/categories.component';
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    FormsModule
   ],
   providers: [
     appRoutingProviders

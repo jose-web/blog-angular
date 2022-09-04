@@ -1,1 +1,66 @@
-<p>register works!</p>
+<h1>Register</h1>
+<form class="col-md-6 offset-md-3" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <div class="form-group mt-2">
+        <label for="name">Name</label>
+        <input 
+            type="text" 
+            name="name" 
+            class="form-control" 
+            id="name" 
+            #name="ngModel" 
+            [(ngModel)]="user.name"
+            pattern="[a-zA-Z]+"
+            required
+        >
+        <small *ngIf="name.touched && !name.valid" class="invalid-feedback d-block">The name is invalid</small>
+    </div>
+
+    <div class="form-group mt-2">
+        <label for="surname">Surname</label>
+        <input 
+            type="text" 
+            name="surname" 
+            class="form-control" 
+            id="surname"
+            #surname="ngModel"
+            [(ngModel)]="user.surname"
+            pattern="[a-zA-Z]+"
+            required
+        >
+        <small *ngIf="surname.touched && !surname.valid" class="invalid-feedback d-block">The surname is invalid</small>
+    </div>
+
+    <div class="form-group mt-2">
+        <label for="email">Email</label>
+        <input 
+            type="email" 
+            name="email" 
+            class="form-control" 
+            id="email"
+            #email="ngModel"
+            [(ngModel)]="user.email"
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            required
+        >
+        <small *ngIf="email.touched && !email.valid" class="invalid-feedback d-block">The email is invalid</small>
+    </div>
+
+    <div class="form-group mt-2">
+        <label for="password">Password</label>
+        <input 
+            type="password" 
+            name="password" 
+            class="form-control" 
+            id="password"
+            #password="ngModel"
+            [(ngModel)]="user.password"
+            required
+        >
+        <small *ngIf="password.touched && !password.valid" class="invalid-feedback d-block">The password is invalid</small>
+    </div>
+
+    <div class="form-group mt-2">
+        <input type="submit" class="btn btn-success" value="Register" [disabled]="registerForm.invalid">
+    </div>
+    
+</form>
