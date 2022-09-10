@@ -1,5 +1,5 @@
-import { isDevMode } from '@angular/core';
+import { environment } from "src/environments/environment";
 
 export const global = {
-    api: ( isDevMode() ? 'http://localhost:8000' : 'https://inblog-laravel.herokuapp.com' ) + '/api/'
+    api: ( environment.production ? 'https://inblog-laravel.herokuapp.com' : 'http://localhost:8000' ) + '/api/'
 }
