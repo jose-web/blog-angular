@@ -20,7 +20,17 @@ export class UserService{
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
 
         let url = this.api+'register'
-        console.log(url);
+        
+        return this._http.post(url, params, {headers})
+    }
+
+    signup(user: User): Observable<any>{
+        let signup: any = user
+        let json = JSON.stringify(signup)
+
+        let url = this.api+'login'
+        let params = 'json='+json
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         
         return this._http.post(url, params, {headers})
     }
