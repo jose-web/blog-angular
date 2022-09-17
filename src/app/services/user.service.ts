@@ -8,6 +8,9 @@ import { global } from "./global";
 export class UserService{
 
     private api: String
+    private token = null
+    private user = null
+
     constructor(
         public _http: HttpClient
     ){
@@ -33,5 +36,21 @@ export class UserService{
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         
         return this._http.post(url, params, {headers})
+    }
+
+    getUser(){
+        let user = JSON.parse(localStorage.getItem('user')!)
+
+        this.user = user
+
+        return this.user
+    }
+
+    getToken(){
+        let token = JSON.parse(localStorage.getItem('token')!)
+        
+        this.token = token
+
+        return this.token
     }
 }
