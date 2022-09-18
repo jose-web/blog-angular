@@ -6,6 +6,7 @@ import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { CategoriesComponent } from "./pages/categories/categories.component";
+import { UserEditComponent } from "./pages/user-edit/user-edit.component";
 
 const appRouters: Routes = [
     { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ const appRouters: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'categories', component: CategoriesComponent },
+    { path: 'settings', component: UserEditComponent },
     { path: '**', component: HomeComponent },
 ]
 
