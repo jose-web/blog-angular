@@ -8,7 +8,7 @@ import { global } from "./global";
 export class UserService{
 
     private api: String
-    private token = null
+    private token: String = ''
     private user = null
 
     constructor(
@@ -47,7 +47,7 @@ export class UserService{
     }
 
     getToken(){
-        let token = JSON.parse(localStorage.getItem('token')!)
+        let token = localStorage.getItem('token')!
         
         this.token = token
 
