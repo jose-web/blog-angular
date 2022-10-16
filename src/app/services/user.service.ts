@@ -9,12 +9,13 @@ export class UserService{
 
     private api: String
     private token: String = ''
-    private user = null
+    private user: User
 
     constructor(
         public _http: HttpClient
     ){
         this.api = global.api
+        this.user = new User(0, '', '' ,'ROLE_USER' ,'' , '', '', '')
     }
 
     register(user: User): Observable<any>{
@@ -38,7 +39,7 @@ export class UserService{
         return this._http.post(url, params, {headers})
     }
 
-    getUser(){
+    getUser(): User{
         let user = JSON.parse(localStorage.getItem('user')!)
 
         this.user = user

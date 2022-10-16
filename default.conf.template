@@ -1,0 +1,10 @@
+server {
+  listen $PORT default_server;
+  server_name  localhost;
+
+  location / {
+    resolver 8.8.8.8;
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+  }
+}
