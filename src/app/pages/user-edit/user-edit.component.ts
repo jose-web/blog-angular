@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
@@ -9,24 +9,24 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-edit.component.scss'],
   providers: [UserService]
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent{
 
   public user: User
 
   constructor(
     private _userService: UserService
   ) {
-    this.user = _userService.getUser()
-  }
-
-  ngOnInit(): void {
+    let user = this._userService.getUser()
+    this.user = new User(user.id, user.name, user.surname, user.role, user.email, '', user.description, user.image)    
   }
 
   onSubmit(form: NgForm){
-    this._userService.register(this.user).subscribe({
-      next: response => {
-        console.log(response)
-        form.reset()
+    this._userService.update(this.user).subscribe({
+      next: (response:any) => {
+        if(response.code == 200){
+          let user = {...response.user, ...response.changes}
+          localStorage.setItem('user', JSON.stringify(user))
+        }
       },
       error: response => {
         console.log(response)

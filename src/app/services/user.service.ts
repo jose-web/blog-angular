@@ -7,8 +7,8 @@ import { global } from "./global";
 @Injectable()
 export class UserService{
 
-    private api: String
-    private token: String = ''
+    private api: string
+    private token: string = ''
     private user: User
 
     constructor(
@@ -42,9 +42,21 @@ export class UserService{
     getUser(): User{
         let user = JSON.parse(localStorage.getItem('user')!)
 
-        this.user = user
+        let url = this.api+'user/details/'+ user?.sub
+        this.getToken()
+        let headers = new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Authorization', this.token)
 
-        return this.user
+        this._http.get(url, {headers}).subscribe({
+            next: (response:any) => {                
+                user = response.user
+            },
+            error: response => {
+            }
+        })
+
+        return user
     }
 
     getToken(){
@@ -53,5 +65,18 @@ export class UserService{
         this.token = token
 
         return this.token
+    }
+
+    update(user: User){
+        let json = JSON.stringify(user)
+
+        let url = this.api+'user/update'
+        let params = 'json='+json
+        this.getToken()
+        let headers = new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Authorization', this.token)
+
+        return this._http.put(url, params, {headers})
     }
 }
