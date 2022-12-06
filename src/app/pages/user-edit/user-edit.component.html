@@ -47,15 +47,14 @@
 
     <div class="form-group mt-2">
         <label for="description">Description</label>
-        <input 
-            type="text" 
+        <textarea 
+            [froalaEditor]
             name="description" 
             class="form-control" 
             id="description"
             #description="ngModel"
             [(ngModel)]="user.description"
-        >
-        <small *ngIf="description.touched && !description.valid" class="invalid-feedback d-block">The description is invalid</small>
+        >{{user.description}}</textarea>
     </div>
 
     <div class="form-group mt-2">
