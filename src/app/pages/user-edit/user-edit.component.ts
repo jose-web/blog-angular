@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserEditComponent{
 
   public user: User
+  public status = ''
 
   constructor(
     private _userService: UserService
@@ -24,12 +25,14 @@ export class UserEditComponent{
     this._userService.update(this.user).subscribe({
       next: (response:any) => {
         if(response.code == 200){
+          this.status = response.status
           let user = {...response.user, ...response.changes}
           localStorage.setItem('user', JSON.stringify(user))
         }
       },
       error: response => {
         console.log(response)
+        this.status = 'error'
       }
     })
   }
