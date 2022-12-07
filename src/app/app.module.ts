@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+//UTILS
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
@@ -36,8 +39,11 @@ import { UserEditComponent } from './pages/user-edit/user-edit.component';
     routing,
     FormsModule,
     HttpClientModule,
+    
+    //UTILS
     FroalaEditorModule, 
     FroalaViewModule,
+    AngularFileUploaderModule,
   ],
   providers: [
     appRoutingProviders

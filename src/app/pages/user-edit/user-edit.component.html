@@ -65,15 +65,11 @@
 
     <div class="form-group mt-2">
         <label for="image">Image</label>
-        <input 
-            type="file" 
-            name="image" 
-            class="form-control" 
-            id="image"
-            #image="ngModel"
-            [(ngModel)]="user.image"
+        <angular-file-uploader
+            [config]="afuConfig"
+            (ApiResponse)="addImage($event)"
         >
-        <small *ngIf="image.touched && !image.valid" class="invalid-feedback d-block">The image is invalid</small>
+        </angular-file-uploader>
     </div>
 
     <div class="form-group mt-2">
