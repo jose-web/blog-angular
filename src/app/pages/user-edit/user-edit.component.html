@@ -68,8 +68,14 @@
         <angular-file-uploader
             [config]="afuConfig"
             (ApiResponse)="addImage($event)"
+        ></angular-file-uploader>
+        
+        <img 
+            *ngIf="user && user.image" 
+            [src]="urlApi + 'user/avatar/' + user.image" 
+            alt="Image of user"
+            class="avatar"
         >
-        </angular-file-uploader>
     </div>
 
     <div class="form-group mt-2">

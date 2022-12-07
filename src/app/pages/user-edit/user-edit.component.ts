@@ -14,12 +14,13 @@ export class UserEditComponent{
 
   public user: User
   public status = ''
+  public urlApi = global.api
   public afuConfig:any = {
     multiple: false,
     formatsAllowed: ".jpg, .png, .gif, .jpeg",
     maxSize: "50",
     uploadAPI:  {
-      url: global.api + "user/upload",
+      url: this.urlApi + "user/upload",
       method:"POST",
       headers: {
         "Authorization" : `${this._userService.getToken()}`
